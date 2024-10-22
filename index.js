@@ -1,13 +1,13 @@
 const API_KEY = "5ce2e2c1";
 
 async function fetchData(title) {
-    const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&t="${title}"`);
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&t=${title}`);
     const data = await response.json();
     return data;
 };
 
 const searchInputElement = document.querySelector('#movie-search-input');
-const searchButtonElement= document.querySelector('#movie-search-button');
+const searchButtonElement = document.querySelector('#movie-search-button');
 
 let movieTitleValue = '';
 
@@ -26,10 +26,10 @@ searchButtonElement.addEventListener('click', async () => {
             <p class="card-text">${movie.Plot}</p>
             <a
                 href="#"
-                class="btn btn-primary"
+                class="btn btn-primary movie-moreDetails-button"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
-                id = "movie-moreDetails-button"
+                data-title="${movie.Title}"
                 >
                 Подробнее
             </a>
@@ -41,41 +41,40 @@ searchButtonElement.addEventListener('click', async () => {
     while (searchResultsContainer.firstChild) {
         searchResultsContainer.removeChild(searchResultsContainer.firstChild);
     }
+
     searchResultsContainer.insertAdjacentHTML('beforeend', cardElementTemplate);
 
-    
+    searchInputElement.value = '';
 
-    //modal window
+    //модальное окно
+    const moreDetailsButton = document.querySelector('.movie-moreDetails-button');
 
-    const moreDetailsButton = document.querySelector('#movie-moreDetails-button');
 
-    moreDetailsButton.addEventListener('click', async ()=>{
-        movieTitleValue = searchInputElement.value;
+    moreDetailsButton.addEventListener('click', async (event) => {
+        const movieTitle = event.target.getAttribute('data-title');
         const modalBody = document.querySelector('.modal-body');
+        
         modalBody.innerHTML = '';
-        const movie = await fetchData(movieTitleValue);
-    
+        
+        const movie = await fetchData(movieTitle);
+
         const modalWindovElementsCard = `
         <img
             src="${movie.Poster}"
             class="card-img-top"
             alt="${movie.Title} movie poster"
-            />
-            <div class="modal-card-body">
-                <h5 class="card-title">${movie.Title}</h5>
-                <span><b>Genre:</b>${movie.Genre}</span>
-                <span><b>Released:</b>${movie.Released}</span>
-                <span><b>Runtime:</b>${movie.Runtime}</span>
-                <span><b>Rated:</b>${movie.Rated}</span>
-                <p class="card-text"><b>Content:</b> ${movie.Plot}</p>
-                <span><b>Director:</b> ${movie.Director}</span>
-                <span><b>Actors:</b>${movie.Actors}</span>
-            </div>`;
-            
-            modalBody.insertAdjacentHTML('beforeend', modalWindovElementsCard);
+        />
+        <div class="modal-card-body">
+            <h5 class="card-title">${movie.Title}</h5>
+            <span><b>Genre:</b> ${movie.Genre}</span><br>
+            <span><b>Released:</b> ${movie.Released}</span><br>
+            <span><b>Runtime:</b> ${movie.Runtime}</span><br>
+            <span><b>Rated:</b> ${movie.Rated}</span><br>
+            <p class="card-text"><b>Content:</b> ${movie.Plot}</p>
+            <span><b>Director:</b> ${movie.Director}</span><br>
+            <span><b>Actors:</b> ${movie.Actors}</span>
+        </div>`;
+        
+        modalBody.insertAdjacentHTML('beforeend', modalWindovElementsCard);
     });
-    searchInputElement.value = '';
 });
-
-
-
