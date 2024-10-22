@@ -43,7 +43,7 @@ searchButtonElement.addEventListener('click', async () => {
     }
     searchResultsContainer.insertAdjacentHTML('beforeend', cardElementTemplate);
 
-    searchInputElement.value = '';
+    
 
     //modal window
 
@@ -74,6 +74,7 @@ searchButtonElement.addEventListener('click', async () => {
             
             modalBody.insertAdjacentHTML('beforeend', modalWindovElementsCard);
     });
+    searchInputElement.value = '';
 });
 
 
