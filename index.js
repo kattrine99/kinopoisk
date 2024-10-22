@@ -42,35 +42,38 @@ searchButtonElement.addEventListener('click', async () => {
         searchResultsContainer.removeChild(searchResultsContainer.firstChild);
     }
     searchResultsContainer.insertAdjacentHTML('beforeend', cardElementTemplate);
+
+    searchInputElement.value = '';
+
     //modal window
 
-const moreDetailsButton = document.querySelector('#movie-moreDetails-button');
+    const moreDetailsButton = document.querySelector('#movie-moreDetails-button');
 
-moreDetailsButton.addEventListener('click', async ()=>{
-    movieTitleValue = searchInputElement.value;
-    const modalBody = document.querySelector('.modal-body');
-    modalBody.innerHTML = '';
-    const movie = await fetchData(movieTitleValue);
-   
-    const modalWindovElementsCard = `
-     <img
-        src="${movie.Poster}"
-        class="card-img-top"
-        alt="${movie.Title} movie poster"
-        />
-        <div class="modal-card-body">
-            <h5 class="card-title">${movie.Title}</h5>
-            <span><b>Genre:</b>${movie.Genre}</span>
-            <span><b>Released:</b>${movie.Released}</span>
-            <span><b>Runtime:</b>${movie.Runtime}</span>
-            <span><b>Rated:</b>${movie.Rated}</span>
-            <p class="card-text"><b>Content:</b> ${movie.Plot}</p>
-            <span><b>Director:</b> ${movie.Director}</span>
-            <span><b>Actors:</b>${movie.Actors}</span>
-        </div>`;
-        
-        modalBody.insertAdjacentHTML('beforeend', modalWindovElementsCard);
-});
+    moreDetailsButton.addEventListener('click', async ()=>{
+        movieTitleValue = searchInputElement.value;
+        const modalBody = document.querySelector('.modal-body');
+        modalBody.innerHTML = '';
+        const movie = await fetchData(movieTitleValue);
+    
+        const modalWindovElementsCard = `
+        <img
+            src="${movie.Poster}"
+            class="card-img-top"
+            alt="${movie.Title} movie poster"
+            />
+            <div class="modal-card-body">
+                <h5 class="card-title">${movie.Title}</h5>
+                <span><b>Genre:</b>${movie.Genre}</span>
+                <span><b>Released:</b>${movie.Released}</span>
+                <span><b>Runtime:</b>${movie.Runtime}</span>
+                <span><b>Rated:</b>${movie.Rated}</span>
+                <p class="card-text"><b>Content:</b> ${movie.Plot}</p>
+                <span><b>Director:</b> ${movie.Director}</span>
+                <span><b>Actors:</b>${movie.Actors}</span>
+            </div>`;
+            
+            modalBody.insertAdjacentHTML('beforeend', modalWindovElementsCard);
+    });
 });
 
 
