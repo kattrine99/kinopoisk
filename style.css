@@ -23,3 +23,11 @@ width: 100%;
   color: #9400d3;
   text-decoration: underline;
 }
+@media (max-width:560px) {
+  .modal-body{
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+  }
+  
+}
