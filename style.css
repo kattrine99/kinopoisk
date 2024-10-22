@@ -1,0 +1,25 @@
+.card {
+  margin-bottom: 3rem;
+}
+.modal-body{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+}
+.modal-body img{
+width: 100%;
+}
+.modal-card-body{
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px ;
+}
+.modal-card-body span{
+  font-size: 16px;
+}.modal-card-body h5{
+  font-family: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #9400d3;
+  text-decoration: underline;
+}
