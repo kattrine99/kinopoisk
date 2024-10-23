@@ -11,19 +11,26 @@ const searchButtonElement = document.querySelector('#movie-search-button');
 
 let movieTitleValue = '';
 
+// Функция для показа уведомления (toaster)
+function showToast() {
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block'; 
+    setTimeout(() => {
+        toast.style.display = 'none';
+    }, 3000);
+}
+
 searchButtonElement.addEventListener('click', async () => {
     movieTitleValue = searchInputElement.value;
     let spinner = document.getElementsByClassName('loader'); 
     if (spinner.length > 0) { 
         spinner[0].style.display = 'block'; 
-        console.log(spinner);
     
         setTimeout(function() {
             spinner[0].style.display = 'none'; 
         }, 1000);
     }
-    
-    
+
     const movie = await fetchData(movieTitleValue);
     const cardElementTemplate = `
     <div class="card" style="width: 18rem">
@@ -57,10 +64,11 @@ searchButtonElement.addEventListener('click', async () => {
 
     searchInputElement.value = '';
 
-    //модальное окно
+    showToast();
+
+    // Модальное окно
     const moreDetailsButton = document.querySelector('.movie-moreDetails-button');
-
-
+    
     moreDetailsButton.addEventListener('click', async (event) => {
         const movieTitle = event.target.getAttribute('data-title');
         const modalBody = document.querySelector('.modal-body');
@@ -89,6 +97,7 @@ searchButtonElement.addEventListener('click', async () => {
         modalBody.insertAdjacentHTML('beforeend', modalWindovElementsCard);
     });
 });
+
 let phoneNumber = ["998974011337", "998974112722"];
 localStorage.setItem("phoneNumber", phoneNumber);
  let myData = {

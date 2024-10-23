@@ -41,12 +41,28 @@ width: 100%;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
   }
+  .icon {
+    height: 2rem;
+    width: 2rem;
+    margin-right: 1rem;
+    color: #222;
+  }
+  
+  .text p {
+    color: #222;
+    margin: 0;
+  }
+  
   .toast {
     display: flex;
     align-items: center;
     position: absolute;
     top: 50px;
     right: 80px;
+    background-color: #efffdb;
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    border: 5px solid #029c91;
   }
   
   @keyframes rotation {
