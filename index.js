@@ -13,6 +13,17 @@ let movieTitleValue = '';
 
 searchButtonElement.addEventListener('click', async () => {
     movieTitleValue = searchInputElement.value;
+    let spinner = document.getElementsByClassName('loader'); 
+    if (spinner.length > 0) { 
+        spinner[0].style.display = 'block'; 
+        console.log(spinner);
+    
+        setTimeout(function() {
+            spinner[0].style.display = 'none'; 
+        }, 1000);
+    }
+    
+    
     const movie = await fetchData(movieTitleValue);
     const cardElementTemplate = `
     <div class="card" style="width: 18rem">
@@ -78,3 +89,16 @@ searchButtonElement.addEventListener('click', async () => {
         modalBody.insertAdjacentHTML('beforeend', modalWindovElementsCard);
     });
 });
+let phoneNumber = ["998974011337", "998974112722"];
+localStorage.setItem("phoneNumber", phoneNumber);
+ let myData = {
+    name: 'Kate',
+    age: 25,
+    sex: 'female',
+    pets:['Yuki']
+ };
+ localStorage.setItem("MyData", JSON.stringify(myData));
+
+let myDataJSON = localStorage.getItem("MyData");
+let my_data = JSON.parse(myDataJSON);
+console.log(my_data.pets[0]);
