@@ -6,19 +6,11 @@ async function fetchData(title) {
     return data;
 };
 
+
 const searchInputElement = document.querySelector('#movie-search-input');
 const searchButtonElement = document.querySelector('#movie-search-button');
 
 let movieTitleValue = '';
-
-// Функция для показа уведомления (toaster)
-function showToast() {
-    const toast = document.getElementById('toast');
-    toast.style.display = 'block'; 
-    setTimeout(() => {
-        toast.style.display = 'none';
-    }, 3000);
-}
 
 searchButtonElement.addEventListener('click', async () => {
     movieTitleValue = searchInputElement.value;
@@ -50,6 +42,12 @@ searchButtonElement.addEventListener('click', async () => {
                 data-title="${movie.Title}"
                 >
                 Подробнее
+            </a>
+            <a
+                href="#"
+                class="btn btn-primary"
+                id="add-fav-btn">
+                Добавить в избранное
             </a>
         </div>
     </div>`;
@@ -97,17 +95,3 @@ searchButtonElement.addEventListener('click', async () => {
         modalBody.insertAdjacentHTML('beforeend', modalWindovElementsCard);
     });
 });
-
-let phoneNumber = ["998974011337", "998974112722"];
-localStorage.setItem("phoneNumber", phoneNumber);
- let myData = {
-    name: 'Kate',
-    age: 25,
-    sex: 'female',
-    pets:['Yuki']
- };
- localStorage.setItem("MyData", JSON.stringify(myData));
-
-let myDataJSON = localStorage.getItem("MyData");
-let my_data = JSON.parse(myDataJSON);
-console.log(my_data.pets[0]);
