@@ -6,6 +6,14 @@ async function fetchData(title) {
     return data;
 };
 
+// Функция для показа уведомления (toaster)
+function showToast() {
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block'; 
+    setTimeout(() => {
+        toast.style.display = 'none'; 
+    }, 3000);
+}
 
 const searchInputElement = document.querySelector('#movie-search-input');
 const searchButtonElement = document.querySelector('#movie-search-button');
@@ -94,4 +102,19 @@ searchButtonElement.addEventListener('click', async () => {
         
         modalBody.insertAdjacentHTML('beforeend', modalWindovElementsCard);
     });
+
+    const addFavButton = document.getElementById('add-fav-btn')
+    addFavButton.addEventListener('click', () => {
+
+        if(localStorage.getItem('favMovies') === null) {
+            const favMoviesList = []
+            favMoviesList.push(movie)
+            localStorage.setItem('favMovies', JSON.stringify(favMoviesList))
+            return
+        }
+
+        const favMoviesList = JSON.parse(localStorage.getItem('favMovies'))
+        favMoviesList.push(movie)
+        localStorage.setItem('favMovies', JSON.stringify(favMoviesList))
+    })
 });
