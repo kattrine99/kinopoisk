@@ -1,6 +1,6 @@
-const favMoviesList = JSON.parse(localStorage.getItem('favMovies'))
+const favMoviesList = JSON.parse(localStorage.getItem('favMovies'));
 
-const favMoviesContainer = document.body.querySelector('.fav-movies-container')
+const favMoviesContainer = document.body.querySelector('.fav-movies-container');
 
 favMoviesList.forEach((favMovie, index) => {
 
@@ -31,23 +31,19 @@ favMoviesList.forEach((favMovie, index) => {
                 </a>
             </div>
         </div>
-    </div>`
+    </div>`;
 
-    favMoviesContainer.insertAdjacentHTML('beforeend', cardElementTemplate)
+    favMoviesContainer.insertAdjacentHTML('beforeend', cardElementTemplate);
 
-    const removeFavMovieButton = favMoviesContainer.children[favMoviesContainer.children.length - 1].querySelector('.remove-button')
+    const removeFavMovieButton = favMoviesContainer.children[favMoviesContainer.children.length - 1].querySelector('.remove-button');
+    const movieCard = removeFavMovieButton.closest('.card');
 
     removeFavMovieButton.addEventListener('click', () => {
         const movieIdToDelete = Number(removeFavMovieButton.parentElement.parentElement.parentElement.dataset.cardId)
 
-        favMoviesList.splice(movieIdToDelete, 1)
-
-        localStorage.setItem('favMovies', JSON.stringify(favMoviesList))
-        
-    })
+        favMoviesList.splice(movieIdToDelete, 1);
+        localStorage.setItem('favMovies', JSON.stringify(favMoviesList));
+        movieCard.remove();
+        });
     
 });
-
-// const main = document.querySelector('main')
-
-// console.dir(main);

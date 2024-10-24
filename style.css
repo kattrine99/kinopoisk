@@ -31,3 +31,45 @@ width: 100%;
   }
   
 }
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: #FF3D00;
+  border-radius: 50%;
+  display: none;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  }
+  .icon {
+    height: 2rem;
+    width: 2rem;
+    margin-right: 1rem;
+    color: #222;
+  }
+  
+  .text p {
+    color: #222;
+    margin: 0;
+  }
+  
+  .toast {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50px;
+    right: 80px;
+    background-color: #efffdb;
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    border: 5px solid #029c91;
+  }
+  
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+  }
